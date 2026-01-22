@@ -7,6 +7,8 @@ on:
         description: 'MCP Token'
         required: true
         type: string
+  schedule:
+    - cron: '0 16 * * *'  # 北京时间0点执行（UTC时间16点）
 
 jobs:
   run-script:
@@ -22,7 +24,7 @@ jobs:
       run: |
         bun start 2>&1 | tee output.txt
       env:
-        MCP_TOKEN: ${{ inputs.mcp_token }}
+        MCP_TOKEN: ${{ inputs.mcp_token || secrets.MCP_TOKEN }}
     - name: Write job summary
       run: |
         echo "## Script Output" >> $GITHUB_STEP_SUMMARY
