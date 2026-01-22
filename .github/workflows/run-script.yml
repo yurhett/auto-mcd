@@ -1,0 +1,32 @@
+name: Run Script
+
+on:
+  workflow_dispatch:
+    inputs:
+      mcp_token:
+        description: 'MCP Token'
+        required: true
+        type: string
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
+    - run: bun install
+    - id: run-script
+      run: |
+        bun start 2>&1 | tee output.txt
+        echo "::set-output name=script-output::$(cat output.txt)"
+      env:
+        MCP_TOKEN: ${{ inputs.mcp_token }}
+    - name: Write job summary
+      run: |
+        echo "## Script Output" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
+        cat output.txt >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY

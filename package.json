@@ -1,0 +1,25 @@
+{
+  "name": "auto-mcd",
+  "private": true,
+  "type": "module",
+  "module": "index.ts",
+  "scripts": {
+    "lint": "oxlint",
+    "format": "oxfmt --write",
+    "start": "bun index.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.25.3",
+    "zod": "^4.3.5"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.6",
+    "oxc": "^1.0.1",
+    "oxfmt": "^0.26.0",
+    "oxlint": "^1.41.0",
+    "tsgolint": "^0.0.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
