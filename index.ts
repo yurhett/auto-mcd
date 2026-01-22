@@ -1,6 +1,13 @@
 import { Client } from '@modelcontextprotocol/sdk/client'
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js'
 
+// 检查 MCP_TOKEN 是否设置
+if (!process.env.MCP_TOKEN) {
+  console.error('Error: MCP_TOKEN 环境变量未设置')
+  console.error('请设置 MCP_TOKEN 环境变量后再运行脚本')
+  process.exit(1)
+}
+
 const mcpConfig = {
   server: 'mcd-mcp',
   url: 'https://mcp.mcd.cn/mcp-servers/mcd-mcp',

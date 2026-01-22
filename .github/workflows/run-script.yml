@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
     inputs:
       mcp_token:
-        description: 'MCP Token'
-        required: true
+        description: 'MCP Token (optional, defaults to repository secret)'
+        required: false
         type: string
   schedule:
     - cron: '0 16 * * *'  # 北京时间0点执行（UTC时间16点）
