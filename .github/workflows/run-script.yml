@@ -8,7 +8,7 @@ on:
         required: false
         type: string
   schedule:
-    - cron: '0 16 * * *'  # 北京时间0点执行（UTC时间16点）
+    - cron: '0 0 * * *'  # 北京时间0点执行（UTC时间16点）
 
 jobs:
   run-script:
